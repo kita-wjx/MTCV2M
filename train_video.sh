@@ -1,0 +1,1 @@
+dora run solver=musicgen/musicgen_video_32khz continue_from=../../../checkpoints/musicgen-small/state_dict.bin

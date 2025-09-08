@@ -1,0 +1,78 @@
+# @package __global__
+
+classifier_free_guidance:
+  training_dropout: 0.1
+  inference_coef: 3.0
+
+attribute_dropout:
+  args:
+    active_on_eval: false
+  video: 
+    visual_content: 0.4
+  finegrained_content:
+    finegrained_content: 0
+  intensity:
+    intensity: 0.5
+  beat:
+    beat: 0.5
+  melody:
+    melody: 0.4
+  va:
+    va: 0.5
+
+fuser:
+  cross_attention_pos_emb: false
+  cross_attention_pos_emb_scale: 1
+  in_atten : true
+  sum: [beat, intensity, melody, va]
+  prepend: [visual_content]
+  cross: [finegrained_content]
+  input_interpolate: []
+
+muticondfuser:
+  in_atten : true
+  sum: [beat, intensity, melody, va]
+  dim: 1024
+  num_blocks: 2
+  patch_length: 50
+
+conditioners:
+  visual_content:
+    model: clip
+    clip:
+      name: ViT-L/14@336px
+
+  finegrained_content:
+    model: fusionnet
+    fusionnet:
+      video_dim: 1024
+      fusion_dim: 768
+      layers: 2
+      heads: 8
+  intensity:
+    model: intensity
+    intensity:
+      intensity_channel: 1
+      time_drop_out: 0.1
+      frame_rate: 50
+  beat:
+    model: beat
+    beat:
+      beat_channel: 1
+      time_drop_out: 0.1
+      frame_rate: 50
+  melody:
+    model: melody
+    melody:
+      melody_channel: 12
+      time_drop_out: 0.1
+      frame_rate: 50
+  va:
+    model: va
+    va:
+      va_channel: 2
+      time_drop_out: 0.1
+      frame_rate: 50
+
+dataset:
+  shuffle: true

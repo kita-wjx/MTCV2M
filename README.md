@@ -57,11 +57,30 @@ Music enhances video narratives and emotions, driving demand for automatic video
 
 ## 🔥 Training
 
-- Coming soon.
+- Data preprocessing:
+  
+  ```bash
+  # Data construction details to be released...
+  # Examples in ./datasets
+  ```
+- Start training:
+
+  ```bash
+  # First stage: pre-training stage
+  bash train_video.sh
+
+  # Importing / Exporting models
+  cd vm2m
+  python load_model.py --checkpoint_path /path/checkpoint.th --output_path ../checkpoints/stage1/state_dict.bin
+
+  # Second stage: fine-tuning stage
+  cd ..
+  bash train_finetune.sh
+  ```
 
 ## 🎯 Infer
 
-- Coming soon.
+- We will release model weights and relevant codes soon.
 
 ## 🤗 Acknowledgement
 
