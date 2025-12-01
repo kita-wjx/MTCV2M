@@ -4,7 +4,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2507.20627-brightgreen.svg?style=flat-square)](https://arxiv.org/pdf/2507.20627)   [![githubio](https://img.shields.io/badge/GitHub.io-Project-blue?logo=Github&style=flat-square)](https://kita-wjx.github.io/MCV2M/)
 
-**This is the official repository for "[Controllable Video-to-Music Generation with Multiple Time-Varying Conditions](https://arxiv.org/pdf/2507.20627)".**
+**This is the official repository for "[Controllable Video-to-Music Generation with Multiple Time-Varying Conditions](https://dl.acm.org/doi/abs/10.1145/3746027.3755656)".**
 
 ## ✨ Abstract
 
@@ -53,7 +53,27 @@ Music enhances video narratives and emotions, driving demand for automatic video
 
 - If you prefer to train from scratch without using any pretrained model, simply remove the `--continue_from` argument from the training command.
 
-- Our model weights will release soon.
+- Our model weights can be downloaded at [here](https://drive.google.com/drive/folders/1i0oVFjuyTQnbkilJ4rIXW-UBkTnexq1i). We provide small and medium version for stage1, which is for the video-to-music generation. You should put "compression_state_dict.bin" file in the corresponded directories. We will release the stage2 checkpoints soon.
+
+- Data preprocessing pretrained weights downloading: Please download the pretrained VideoMAEV2 checkpoint at [here](https://drive.google.com/drive/folders/1i0oVFjuyTQnbkilJ4rIXW-UBkTnexq1i), which is sourced from https://github.com/OpenGVLab/VideoMAEv2.
+
+- Checkpoints folder layout
+  ```
+  ├── musicgen-medium
+  │   └── state_dict.bin
+  ├── musicgen-small
+  │   └── state_dict.bin
+  ├── stage1_medium
+  │   ├── compression_state_dict.bin
+  │   └── state_dict.bin
+  ├── stage1_small
+  │   ├── compression_state_dict.bin
+  │   └── state_dict.bin
+  ├── stage2_medium
+  ├── stage2_small
+  └── VideoMAELv2
+      └── state_dict.bin
+  ```
 
 ## 🔥 Training
 
@@ -80,7 +100,28 @@ Music enhances video narratives and emotions, driving demand for automatic video
 
 ## 🎯 Infer
 
-- We will release model weights and relevant codes soon.
+- Data preprocessing:
+
+  ```bash
+  # Video-to-music Generation
+  cd features
+  python videoprepro_test.py
+
+  # Video-to-music Generation with Mutiple Time-varying Conditions
+  # We will release model weights and relevant codes soon.
+  ```
+
+- Music Generation:
+
+  ```bash
+  # Video-to-music Generation
+  cd ..
+  python test_video.py
+
+  # Video-to-music Generation with Mutiple Time-varying Conditions
+  # We will release model weights and relevant codes soon.
+  ```
+
 
 ## 🤗 Acknowledgement
 
@@ -91,13 +132,11 @@ Music enhances video narratives and emotions, driving demand for automatic video
 If you find our work useful, please consider citing:
 
 ```
-@misc{wu2025controllablevideotomusicgenerationmultiple,
-      title={Controllable Video-to-Music Generation with Multiple Time-Varying Conditions}, 
-      author={Junxian Wu and Weitao You and Heda Zuo and Dengming Zhang and Pei Chen and Lingyun Sun},
-      year={2025},
-      eprint={2507.20627},
-      archivePrefix={arXiv},
-      primaryClass={cs.MM},
-      url={https://arxiv.org/abs/2507.20627}, 
+@inproceedings{wu2025controllable,
+  title={Controllable Video-to-Music Generation with Multiple Time-Varying Conditions},
+  author={Wu, Junxian and You, Weitao and Zuo, Heda and Zhang, Dengming and Chen, Pei and Sun, Lingyun},
+  booktitle = {Proceedings of the 33rd ACM International Conference on Multimedia},
+  pages = {10427–10436},
+  year={2025}
 }
 ```
